@@ -56,3 +56,36 @@ export async function getEvolutionLabel(pokemonId, pokemonName) {
     return "Dato evolutivo no disponible";
   }
 }
+
+function getSpanishGenus(speciesData) {
+  const spanish = speciesData.genera?.find((item) => item.language.name === "es");
+  const english = speciesData.genera?.find((item) => item.language.name === "en");
+  return spanish?.genus || english?.genus || "Especie desconocida";
+}
+
+function getFlavorText(speciesData) {
+  const spanish = speciesData.flavor_text_entries?.find((item) => item.language.name === "es");
+  const english = speciesData.flavor_text_entries?.find((item) => item.language.name === "en");
+  const value = spanish?.flavor_text || english?.flavor_text || "";
+  return value.replace(/\f/g, " ").replace(/\n/g, " ").trim();
+}
+
+export async function getPokemonCardMeta(pokemonId, pokemonName) {
+  try {
+    const species = await getPokemonSpecies(pokemonId);
+    const evolutionData = await getEvolutionData(species.evolution_chain.url);
+    const parentName = findParentInEvolutionChain(evolutionData.chain, pokemonName);
+
+    return {
+      evolutionLabel: parentName ? `Evoluciona de ${parentName}` : "Basic Pokemon",
+      genus: getSpanishGenus(species),
+      flavorText: getFlavorText(species)
+    };
+  } catch (_error) {
+    return {
+      evolutionLabel: "Dato evolutivo no disponible",
+      genus: "Especie desconocida",
+      flavorText: ""
+    };
+  }
+}

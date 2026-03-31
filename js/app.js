@@ -1,4 +1,4 @@
-import { getEvolutionLabel, searchByType, searchPokemon } from "./api.js";
+import { getPokemonCardMeta, searchByType, searchPokemon } from "./api.js";
 import { renderPokemonCard, renderPokemonCarousel, showLoading, showMessage } from "./ui.js";
 import { normalizeSearchInput, isNumericQuery, parseOptionalNumber } from "./utils.js";
 
@@ -15,9 +15,9 @@ const statusMessage = document.querySelector("#status-message");
 const TYPE_RESULT_LIMIT = 40;
 
 function decoratePokemonWithEvolution(pokemon) {
-  return getEvolutionLabel(pokemon.id, pokemon.name).then((label) => ({
+  return getPokemonCardMeta(pokemon.id, pokemon.name).then((meta) => ({
     ...pokemon,
-    evolutionLabel: label
+    ...meta
   }));
 }
 
