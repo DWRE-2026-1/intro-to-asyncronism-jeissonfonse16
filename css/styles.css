@@ -1,0 +1,266 @@
+:root {
+  --bg-dark: #18131c;
+  --text-light: #f8f4eb;
+  --accent-gold: #e6c56f;
+  --panel: #251e2c;
+  --shadow: rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #332544 0%, var(--bg-dark) 45%, #100d14 100%);
+  color: var(--text-light);
+}
+
+.app {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.app-kicker {
+  margin: 0;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #f6d58f;
+}
+
+h1 {
+  margin: 0.2rem 0 0.4rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.app-help {
+  max-width: 760px;
+  margin: 0 auto;
+  color: #ece5da;
+}
+
+.search-panel {
+  background: linear-gradient(160deg, #2c2235 0%, #1b1521 100%);
+  border: 2px solid #7b5d1e;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 12px 24px var(--shadow);
+}
+
+.simple-search-form,
+.advanced-search-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.simple-search-form {
+  grid-template-columns: 1fr auto;
+}
+
+input,
+select,
+button {
+  border-radius: 10px;
+  border: 1px solid #c8ae76;
+  font: inherit;
+}
+
+input,
+select {
+  padding: 0.68rem 0.8rem;
+  background: #f9f6ef;
+  color: #1c1722;
+}
+
+button {
+  padding: 0.68rem 1rem;
+  background: linear-gradient(160deg, #f6dca2, #d8ab4f);
+  color: #2b1f09;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.03);
+}
+
+.toggle-advanced-btn {
+  margin-top: 0.75rem;
+  width: 100%;
+}
+
+.advanced-search-form {
+  margin-top: 0.9rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field-group label {
+  font-size: 0.92rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.results-section {
+  margin-top: 1.3rem;
+}
+
+.status-message {
+  min-height: 1.5rem;
+  margin: 0 0 0.65rem;
+  color: #f6e7bc;
+}
+
+.results {
+  display: grid;
+  gap: 1rem;
+}
+
+.carousel-container {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.4rem 0.2rem 0.8rem;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-container::-webkit-scrollbar {
+  height: 10px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+  background: #9c8046;
+  border-radius: 999px;
+}
+
+.pokemon-card {
+  position: relative;
+  border-radius: 16px;
+  border: 8px solid #d9bc74;
+  background: var(--card-bg, #e7dfce);
+  color: #16110b;
+  box-shadow: 0 10px 20px var(--shadow);
+}
+
+.pokemon-card.large {
+  width: min(420px, 100%);
+  margin: 0 auto;
+}
+
+.pokemon-card.small {
+  width: 290px;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.card-shell {
+  border: 2px solid #7a5c20;
+  border-radius: 10px;
+  padding: 0.8rem;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.18));
+}
+
+.card-top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.evolution-badge {
+  font-size: 0.67rem;
+  background: rgba(254, 247, 225, 0.95);
+  border: 1px solid #8c7429;
+  border-radius: 8px;
+  padding: 0.22rem 0.35rem;
+  font-weight: 700;
+}
+
+.pokemon-name {
+  margin: 0;
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 1.24rem;
+}
+
+.hp {
+  margin: 0;
+  font-weight: 800;
+}
+
+.image-frame {
+  margin: 0.7rem 0;
+  border: 4px solid #c3a25f;
+  background: radial-gradient(circle, #ffffff 0%, #f2efe4 80%);
+  border-radius: 8px;
+  min-height: 190px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem;
+}
+
+.image-frame img {
+  width: 100%;
+  max-width: 240px;
+  object-fit: contain;
+  image-rendering: crisp-edges;
+}
+
+.card-info {
+  border-top: 2px solid #84631f;
+  padding-top: 0.55rem;
+  font-size: 0.93rem;
+  display: grid;
+  gap: 0.36rem;
+}
+
+.card-info p {
+  margin: 0;
+}
+
+.card-footnote {
+  margin-top: 0.6rem;
+  border-top: 1px solid rgba(44, 29, 3, 0.25);
+  padding-top: 0.4rem;
+  font-size: 0.79rem;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 840px) {
+  .advanced-search-form {
+    grid-template-columns: 1fr;
+  }
+
+  .simple-search-form {
+    grid-template-columns: 1fr;
+  }
+}

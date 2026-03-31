@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BaseDex | Pokédex temática</title>
+    <link rel="preconnect" href="https://pokeapi.co" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <p class="app-kicker">Pokédex temática</p>
+        <h1>BaseDex</h1>
+        <p class="app-help">
+          Busca por nombre o número para una carta única, o usa filtros avanzados para explorar múltiples Pokémon.
+        </p>
+      </header>
+
+      <section class="search-panel">
+        <form id="simple-search-form" class="simple-search-form" novalidate>
+          <label for="pokemon-query" class="visually-hidden">Nombre o número de Pokémon</label>
+          <input
+            id="pokemon-query"
+            name="pokemon-query"
+            type="text"
+            placeholder="Ej: pikachu o 25"
+            autocomplete="off"
+          />
+          <button type="submit" id="simple-search-btn">Buscar</button>
+        </form>
+
+        <button type="button" class="toggle-advanced-btn" id="toggle-advanced-btn" aria-expanded="false">
+          Mostrar búsqueda avanzada
+        </button>
+
+        <form id="advanced-search-form" class="advanced-search-form hidden" novalidate>
+          <div class="field-group">
+            <label for="type-filter">Tipo</label>
+            <select id="type-filter" name="type">
+              <option value="">Selecciona un tipo</option>
+              <option value="normal">Normal</option>
+              <option value="fire">Fire</option>
+              <option value="water">Water</option>
+              <option value="grass">Grass</option>
+              <option value="electric">Electric</option>
+              <option value="psychic">Psychic</option>
+              <option value="fighting">Fighting</option>
+              <option value="rock">Rock</option>
+              <option value="ground">Ground</option>
+              <option value="poison">Poison</option>
+              <option value="ice">Ice</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="height-filter">Altura máxima (dm)</label>
+            <input id="height-filter" name="height" type="number" min="1" step="1" placeholder="Ej: 10" />
+          </div>
+
+          <div class="field-group">
+            <label for="weight-filter">Peso máximo (hg)</label>
+            <input id="weight-filter" name="weight" type="number" min="1" step="1" placeholder="Ej: 200" />
+          </div>
+
+          <button type="submit" id="advanced-search-btn">Aplicar filtros</button>
+        </form>
+      </section>
+
+      <section class="results-section">
+        <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+        <div id="results" class="results"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
