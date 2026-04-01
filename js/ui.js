@@ -1,5 +1,26 @@
 import { capitalize, getTypeColor } from "./utils.js";
 
+const TYPE_ICONS = {
+  fire: "🔥",
+  water: "💧",
+  grass: "🌿",
+  electric: "⚡",
+  psychic: "🔮",
+  ice: "❄️",
+  poison: "☠️",
+  normal: "⚪",
+  fighting: "🥊",
+  rock: "🪨",
+  ground: "🟤",
+  ghost: "👻",
+  dark: "🌑",
+  dragon: "🐉",
+  fairy: "✨",
+  steel: "⚙️",
+  flying: "🪶",
+  bug: "🐛"
+};
+
 function createInfoItem(label, value, extraClass = "") {
   return `
     <div class="info-item ${extraClass}">
@@ -11,7 +32,11 @@ function createInfoItem(label, value, extraClass = "") {
 
 function formatTypeBadges(types = []) {
   return types
-    .map((item) => `<span class="type-pill">${capitalize(item.type.name)}</span>`)
+    .map((item) => {
+      const type = item.type.name;
+      const icon = TYPE_ICONS[type] || "◆";
+      return `<span class="type-pill">${icon} ${capitalize(type)}</span>`;
+    })
     .join("");
 }
 

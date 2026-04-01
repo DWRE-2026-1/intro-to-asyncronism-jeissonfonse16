@@ -25,8 +25,27 @@ function clearResults() {
   resultsContainer.innerHTML = "";
 }
 
+function playRetroClick() {
+  try {
+    const context = new window.AudioContext();
+    const osc = context.createOscillator();
+    const gain = context.createGain();
+    osc.type = "square";
+    osc.frequency.setValueAtTime(540, context.currentTime);
+    gain.gain.setValueAtTime(0.04, context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.08);
+    osc.connect(gain);
+    gain.connect(context.destination);
+    osc.start();
+    osc.stop(context.currentTime + 0.09);
+  } catch (_error) {
+    // Silencioso si el navegador bloquea audio.
+  }
+}
+
 async function handleSimpleSearch(event) {
   event.preventDefault();
+  playRetroClick();
   const normalized = normalizeSearchInput(queryInput.value);
 
   if (!normalized) {
@@ -51,6 +70,7 @@ async function handleSimpleSearch(event) {
 
 async function handleAdvancedSearch(event) {
   event.preventDefault();
+  playRetroClick();
 
   const selectedType = typeFilter.value;
   const maxHeight = parseOptionalNumber(heightFilter.value);
